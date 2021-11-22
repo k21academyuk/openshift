@@ -24,6 +24,6 @@ spec:
             nodeSelectorTerms:
             - matchExpressions:
               - key: disktype
-                operator: In 
+                operator: NotIn
                 values:
                 - ssd
