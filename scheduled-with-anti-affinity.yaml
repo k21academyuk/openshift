@@ -5,7 +5,7 @@ metadata:
     app: scheduled-with-anti-affinity
   name: scheduled-with-anti-affinity
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       deployment: scheduled-with-anti-affinity
