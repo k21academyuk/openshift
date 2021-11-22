@@ -21,7 +21,7 @@ spec:
       nodeSelector:
         type: taint
       tolerations:
-      - effect: "NoExecute"
+      - effect: "NoSchedule"
         operator: "Equal"
         key: "disktype"
         value: "magnetic"
