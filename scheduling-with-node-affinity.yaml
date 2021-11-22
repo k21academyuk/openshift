@@ -1,17 +1,29 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  labels:
+    app: scheduling-with-node-affinity
   name: scheduling-with-node-affinity
 spec:
-  affinity:
-    nodeAffinity: 
-      requiredDuringSchedulingIgnoredDuringExecution: 
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: env
-            operator: In 
-            values:
-            - prod 
-  containers:
-  - name: with-node-affinity
-    image: docker.io/ocpqe/hello-pod
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: scheduling-with-node-affinity
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        deployment: scheduling-with-node-affinity
+    spec:
+      containers:
+      - image: nginxinc/nginx-unprivileged
+        name: scheduling-with-node-affinity
+      affinity:
+        nodeAffinity: 
+          requiredDuringSchedulingIgnoredDuringExecution: 
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: env
+                operator: In 
+                values:
+                - prod 
